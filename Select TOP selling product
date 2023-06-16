@@ -1,0 +1,21 @@
+SELECT
+  p.product_name,
+  c.category_name,
+  SUM(s.quantity) AS total_sales,
+  SUM(s.price * s.quantity) AS revenue,
+  AVG(s.customer_rating) AS avg_rating
+FROM
+  products p
+JOIN
+  sales s ON p.product_id = s.product_id
+JOIN
+  categories c ON p.category_id = c.category_id
+WHERE
+  c.category_name IN ('Electronics', 'Home Appliances')
+  AND s.order_date BETWEEN '2022-01-01' AND '2022-12-31'
+GROUP BY
+  p.product_name,
+  c.category_name
+ORDER BY
+  total_sales DESC
+LIMIT 10;
