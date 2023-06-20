@@ -1,0 +1,20 @@
+-- Business Intelligence challenge
+-- TASK1 - EXPLORATION
+-- QUESTION 1- HOW MANY PROJECTS ARE IN THE DATASET?
+select 
+  count(*)
+from 
+  public.projects
+where
+  id is not null;
+-- QUESTION 2- EXPLORE THE DATA AND DIVE INTO ANY IRREGULARITIES
+-- TABLE 1 - PROJECTS
+select
+  id,
+  count(*)
+from
+  public.projects
+group by 
+  id
+having 
+  count(*)>1
